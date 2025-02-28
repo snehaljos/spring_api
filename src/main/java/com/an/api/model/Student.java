@@ -1,22 +1,31 @@
 package com.an.api.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@Entity(name="students")
+@Entity
+@Table(name="student")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="student_id")
     private Long student_id;
+
+    @Column(name="first_name")
     private String first_name;
+
+    @Column(name="last_name")
     private String last_name;
+
+    @Column(name="date_of_birth")
     private String date_of_birth;
+
+    @Column(name="email")
     private String email;
+
+    @Column(name="enrollment_date")
     private String enrollment_date;
 
     public Long getStudent_id() {
