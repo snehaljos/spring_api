@@ -1,6 +1,7 @@
 package com.an.api.controller;
 
 
+import com.an.api.Exception.UserNotFoundException;
 import com.an.api.model.Student;
 import com.an.api.services.StudentService;
 import org.slf4j.Logger;
@@ -41,7 +42,6 @@ public class MainController {
         Student student1 = studentService.addStudent(student);
         logger.info("Student added with id {}",student1.getStudent_id());
         return ResponseEntity.status(HttpStatus.CREATED).body(student1);
-
     }
 
     @DeleteMapping("/StudentById/{student_id}")
@@ -54,7 +54,9 @@ public class MainController {
 
     @PutMapping("/StudentById/{student_id}")
     public ResponseEntity<Student> updateStudent(@PathVariable Long student_id, @RequestBody Student updatedstudent){
+        logger.info("Received request to Update student with id {}", student_id);
         Student student= studentService.updateStudent(student_id,updatedstudent);
+        logger.info("Student Updated with id {}", student_id);
         return ResponseEntity.status(HttpStatus.CREATED).body(student);
     }
 }
